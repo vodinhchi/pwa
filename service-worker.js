@@ -1,4 +1,4 @@
-const CACHE_NAME = 'todo-cache-v2'; // Đổi tên cache để kiểm soát phiên bản
+const CACHE_NAME = 'todo-cache-v223'; // Đổi tên cache để kiểm soát phiên bản
 const URLS_TO_CACHE = [
     '/',
     '/index.html',
