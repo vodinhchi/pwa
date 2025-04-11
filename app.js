@@ -10,13 +10,30 @@ document.getElementById('addTodo').addEventListener('click', () => {
     }
 });
 
-// Đăng ký Service Worker
+// // Đăng ký Service Worker
+
+// if ('serviceWorker' in navigator) {
+//     window.addEventListener('load', () => {
+//         navigator.serviceWorker.register('service-worker.js').then(registration => {
+//             console.log('Service Worker registered:', registration);
+//         }).catch(error => {
+//             console.error('Service Worker registration failed:', error);
+//         });
+//     });
+// }
+
 if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('service-worker.js').then(registration => {
-            console.log('Service Worker registered:', registration);
-        }).catch(error => {
-            console.error('Service Worker registration failed:', error);
-        });
+    navigator.serviceWorker.register('/service-worker.js').then(registration => {
+        registration.onupdatefound = () => {
+            const newWorker = registration.installing;
+            newWorker.onstatechange = () => {
+                if (newWorker.state === 'installed') {
+                    if (navigator.serviceWorker.controller) {
+                        // Có phiên bản mới, yêu cầu người dùng làm mới
+                        console.log('New version available! Please refresh.');
+                    }
+                }
+            };
+        };
     });
 }
