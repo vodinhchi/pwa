@@ -1,6 +1,6 @@
 self.addEventListener('install', event => {
     event.waitUntil(
-        caches.open('todo-cache').then(cache => {
+        caches.open('todo-cache-update9h57').then(cache => {
             return cache.addAll([
                 '/',
                 '/index.html',
